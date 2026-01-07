@@ -48,7 +48,12 @@ const ReportsList = () => {
         alert('Viewing file logic would go here. Filename is hidden from client unless in list.');
     };
 
-    const getFileUrl = (filename) => `http://localhost:5000/uploads/${filename}`;
+    const getFileUrl = (filename) => {
+        const baseUrl = process.env.REACT_APP_API_URL
+            ? process.env.REACT_APP_API_URL.replace('/api', '') // Remove /api suffix if present to get root
+            : 'http://localhost:5000';
+        return `${baseUrl}/uploads/${filename}`;
+    };
 
     const deleteReport = async (id) => {
         if (!window.confirm("Are you sure you want to delete this report?")) return;

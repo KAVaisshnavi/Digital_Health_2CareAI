@@ -28,20 +28,25 @@ const ShareAccess = () => {
     return (
         <form onSubmit={handleShare}>
             <p>Share a report with another user (by username).</p>
-            <select value={selectedReportId} onChange={e => setSelectedReportId(e.target.value)} required>
-                <option value="">Select Report</option>
-                {reports.map(r => (
-                    <option key={r.id} value={r.id}>{r.report_type} - {r.date}</option>
-                ))}
-            </select>
+            {reports.length === 0 ? (
+                <p style={{ color: 'gray' }}>You have no reports to share. <a href="/dashboard">Upload one first</a>.</p>
+            ) : (
+                <select value={selectedReportId} onChange={e => setSelectedReportId(e.target.value)} required>
+                    <option value="">Select Report</option>
+                    {reports.map(r => (
+                        <option key={r.id} value={r.id}>{r.report_type} - {r.date}</option>
+                    ))}
+                </select>
+            )}
             <input
                 type="text"
                 placeholder="Username to share with"
                 value={username}
                 onChange={e => setUsername(e.target.value)}
                 required
+                disabled={reports.length === 0}
             />
-            <button className="btn" type="submit">Share Details</button>
+            <button className="btn" type="submit" disabled={reports.length === 0}>Share Details</button>
         </form>
     );
 };
