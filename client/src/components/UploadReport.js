@@ -31,7 +31,8 @@ const UploadReport = () => {
             setVitals('');
             // Ideally refresh list
         } catch (err) {
-            alert('Error uploading report');
+            console.error(err);
+            alert('Error uploading report: ' + (err.response?.data?.message || err.message || 'Server error'));
         }
     };
 
