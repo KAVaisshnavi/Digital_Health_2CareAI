@@ -30,7 +30,14 @@ const ShareAccess = () => {
         <form onSubmit={handleShare}>
             <p>Share a report with another user (by username).</p>
             {reports.length === 0 ? (
-                <p style={{ color: 'gray' }}>You have no reports to share. <Link to="/dashboard">Upload one first</Link>.</p>
+                <p style={{ color: 'gray' }}>
+                    You have no reports to share.
+                    <a href="#upload-section" onClick={(e) => {
+                        e.preventDefault();
+                        const el = document.getElementById('upload-section');
+                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }}> Upload one first</a>.
+                </p>
             ) : (
                 <select value={selectedReportId} onChange={e => setSelectedReportId(e.target.value)} required>
                     <option value="">Select Report</option>

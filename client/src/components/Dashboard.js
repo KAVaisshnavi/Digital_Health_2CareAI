@@ -38,7 +38,7 @@ const Dashboard = () => {
 
                 {user.role === 'owner' && (
                     <>
-                        <div className="card">
+                        <div className="card" id="upload-section">
                             <h3>Upload Report</h3>
                             <UploadReport />
                         </div>
