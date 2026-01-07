@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import api from '../services/api';
 
 const ShareAccess = () => {
@@ -29,7 +30,7 @@ const ShareAccess = () => {
         <form onSubmit={handleShare}>
             <p>Share a report with another user (by username).</p>
             {reports.length === 0 ? (
-                <p style={{ color: 'gray' }}>You have no reports to share. <a href="/dashboard">Upload one first</a>.</p>
+                <p style={{ color: 'gray' }}>You have no reports to share. <Link to="/dashboard">Upload one first</Link>.</p>
             ) : (
                 <select value={selectedReportId} onChange={e => setSelectedReportId(e.target.value)} required>
                     <option value="">Select Report</option>
